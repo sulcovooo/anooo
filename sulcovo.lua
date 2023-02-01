@@ -1,47 +1,64 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/sulcovooo/anooo/main/lib.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/cerberus.lua"))()
 
-local window = Library.new("Window") -- Args(<string> Name, <boolean?> ConstrainToScreen)
+local window = Library.new("Welcome admin - sulcovo!") -- Args(<string> Name, <boolean?> ConstrainToScreen)
 
 window:LockScreenBoundaries(true) -- Args(<boolean> ConstrainToScreen)
 
-local tab = window:Tab("Tab") -- Args(<string> Name, <string?> TabImage)
+local tab = window:Tab("random") -- Args(<string> Name, <string?> TabImage)
 
-local section = tab:Section("Section") -- Args(<string> Name)
+local section = tab:Section("Global") -- Args(<string> Name)
 
-local title = section:Title("Title") -- Args(<string> Name)
-title:ChangeText("Title") -- Args(<String> NewText)
+local title = section:Title("Global") -- Args(<string> Name)
 
-local label = section:Label("Label") -- Args(<String> LabelText, <Number?> TextSize, <Color3?> TextColor)
-label:ChangeText("Label") -- Args(<String> NewText, <Boolean?> PlayAnimation)
-
-local toggle = section:Toggle("Toggle", function(bool)
-   print("Toggle is: "..tostring(bool))
-end) -- Args(<String> Name, <Function> Callback)
-toggle:Set(false) -- Args(<Boolean> ToggleState, <Function?> Callback)
-
-section:Button("Button", function()
-   print("Pressed button!")
+section:ColorWheel("Barva ESP", function(color)
+    selectedColorESP = color
 end) -- Args(<String> Name, <Function> Callback)
 
-local dropdown = section:Dropdown("Dropdown") -- Args(<String> Name)
-dropdown:ChangeText("Dropdown") -- Args(<String> NewText)
-dropdown:Toggle("Toggle") -- Dropdowns and searchbars can go inside dropdowns
+selectedColorESP = nil
 
-section:Slider("Slider", function(val)
-   print("Slider Value is: "..val)
-end) -- Args(<String> Name, <Function> Callback, <Number?> MaximumValue, <Number?> MinimumValue)
+local toggle = section:Toggle("ESP", function(bool)
+local transparency = .8
 
-local searchBar = section:SearchBar("Search...") -- Args(<String> PlaceholderText)
-searchBar:Toggle("Toggle") -- Searchbars and dropdowns can go inside searchbars
+local Players = game:GetService("Players")
+local function _ESP(c)
+  repeat wait() until c.PrimaryPart ~= nil
+  for i,p in pairs(c:GetChildren()) do
+    if p.ClassName == "Part" or p.ClassName == "MeshPart" then
+      if p:FindFirstChild("shit") then p.shit:Destroy() end
+      local a = Instance.new("BoxHandleAdornment",p)
+      a.Name = "shit"
+      a.Size = p.Size
+      a.Color = BrickColor.new(selectedColorESP)
+      a.Transparency = transparency
+      a.AlwaysOnTop = true    
+      a.Visible = bool
+      a.Adornee = p
+      a.ZIndex = true    
 
-section:Keybind("Keybind", function()
-   print("Keybind pressed!")
-end) -- Args(<String> Name, <Function> Callback, <String> DefaultKey)
-
-section:TextBox("Textbox", function(txt)
-   print("Textbox string is: "..txt)
+    end
+  end
+end
+local function ESP()
+  for i,v in pairs(Players:GetChildren()) do
+    if v ~= game.Players.LocalPlayer then
+      if v.Character then
+        _ESP(v.Character)
+      end
+      v.CharacterAdded:Connect(function(chr)
+        _ESP(chr)
+      end)
+    end
+  end
+  Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(chr)
+      _ESP(chr)
+    end)  
+  end)
+end
+ESP()
 end) -- Args(<String> Name, <Function> Callback)
+toggle:Set(false)
 
-section:ColorWheel("ColorWheel", function(color)
-   print("ColorWheel color is: "..tostring(color))
+section:Button("Had FE", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/iPigTW/PigHub/main/pighub.lua",true))()
 end) -- Args(<String> Name, <Function> Callback)
