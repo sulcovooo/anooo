@@ -1,4 +1,4 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/cerberus.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/sulcovooo/anooo/main/lib.lua"))()
 
 local window = Library.new("Welcome admin - sulcovo!") -- Args(<string> Name, <boolean?> ConstrainToScreen)
 
@@ -60,5 +60,5 @@ end) -- Args(<String> Name, <Function> Callback)
 toggle:Set(false)
 
 section:Button("Had FE", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/iPigTW/PigHub/main/pighub.lua",true))()
+loadstring(game:HttpGet(('https://pastefy.ga/tWBTcE4R/raw'),true))()
 end) -- Args(<String> Name, <Function> Callback)
