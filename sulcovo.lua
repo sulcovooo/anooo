@@ -59,6 +59,17 @@ ESP()
 end) -- Args(<String> Name, <Function> Callback)
 toggle:Set(false)
 
+
+
+
+section:Toggle("FE Had", function(bool)
+if bool then
+  loadstring(game:HttpGet(('https://pastefy.ga/tWBTcE4R/raw'),true))()
+else
+  game:GetService("Players").LocalPlayer.Character.Humanoid.Health=0
+end
+toggle:Set(false)
+
 section:Button("Had FE", function()
 loadstring(game:HttpGet(('https://pastefy.ga/tWBTcE4R/raw'),true))()
 end) -- Args(<String> Name, <Function> Callback)
